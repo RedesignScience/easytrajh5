@@ -314,7 +314,7 @@ class EasyH5File:
 
 def dump_attr_to_h5(h5_fname, value, key):
     path = Path(h5_fname)
-    mode = "a" if path.isfile() else "w"  # if the h5 exist
+    mode = "a" if path.is_file() else "w"  # if the h5 exist
     with h5py.File(path, mode) as f:
         f.attrs[key] = value
 
@@ -338,7 +338,7 @@ def dump_value_to_h5(h5_fname, value, key):
     """
     path = Path(h5_fname)
 
-    if path.isfile():  # if the h5 exist
+    if path.is_file():  # if the h5 exist
         with h5py.File(path, "a") as f:
             if key in f.keys():
                 old_size = f[key].shape[0]

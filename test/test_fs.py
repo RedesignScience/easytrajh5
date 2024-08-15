@@ -35,7 +35,7 @@ def test_clear_dir():
     fs.ensure_dir(source_dir / "b")
     fnames = make_source_files(source_dir)
     fs.clear_dir(source_dir)
-    assert not len(source_dir.listdir())
+    assert next(source_dir.iterdir(), None) is None
 
 
 def make_source_files(source_dir):
@@ -84,7 +84,7 @@ def test_transfer_glob_str():
     fnames = make_source_files(source_dir)
     target_dir = this_dir / "target"
     target_dir.rmtree_p()
-    fs.transfer_glob_str(this_dir / "a", '**/*.txt', target_dir)
+    fs.transfer_glob_str(this_dir / "a", "**/*.txt", target_dir)
 
 
 if __name__ == "__main__":
